@@ -1,0 +1,32 @@
+# Node modules
+node_modules/
+
+# Build outputs
+dist/
+.vite/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment files
+.env
+.env.local
+
+# Editor directories
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+
+# TypeScript
+*.tsbuildinfo
+
+# Coverage
+coverage/
+
+# Ignore lock file for pnpm if used locally
+# (do not ignore package-lock.json or yarn.lock if you track them)
+pnpm-lock.yaml
