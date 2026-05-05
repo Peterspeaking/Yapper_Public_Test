@@ -81,7 +81,7 @@ function App() {
   };
 
   return (
-    <Box bg="gray.900" minH="100vh" py={8}>
+    <Box bg="blue.900" minH="100vh" py={8}>
       <Container maxW="650px">
         <VStack gap={5} align="stretch">
           <Box bg="gray.800" p={6} borderRadius="2xl" boxShadow="md">
