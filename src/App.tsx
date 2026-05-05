@@ -13,9 +13,7 @@ import {
   VStack,
 } from "@chakra-ui/react";
 
-// Import our starter tweet data from a JSON file.
-// This keeps the data out of App.tsx so the file is cleaner.
-import tweetsData from "./data/tweets.json";
+
 import type { Tweet } from "./types/Tweet";
 
 // // This describes what a Tweet object should look like.
