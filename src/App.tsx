@@ -1,4 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from 'react';
+import { supabase } from './lib/supabase';
+
 import {
   Badge,
   Box,
@@ -34,14 +36,15 @@ function App() {
   // tweets is the current list of tweets on the page.
   // setTweets is how React updates the list.
   // We start with tweets from the JSON file.
-  const [tweets, setTweets] = useState<Tweet[]>(tweetsData as Tweet[]);
+  const [tweets, setTweets] = useState<Tweet[]>([]);
 
   // input is what is currently typed in the box.
   // setInput is how React updates it.
   const [input, setInput] = useState("");
 
+
   // This function runs when the user clicks the Yap button.
-  const handleYap = () => {
+  const handleYap = async () => {
     // If the input is empty or only spaces, stop the function.
     if (!input.trim()) return;
     const newTweet: Tweet = {
@@ -55,9 +58,10 @@ function App() {
       tag: "",
     };
 
-    // Update the tweet list.
+    // Update the tweet list locally (no server write in read-only demo).
     // Put the new tweet first, then copy in all the old tweets.
     setTweets([newTweet, ...tweets]);
+
 
     // Clear the input box after posting.
     setInput("");
@@ -79,6 +83,18 @@ function App() {
     const day = Math.floor(hr / 24);
     return `${day}d`;
   };
+
+  useEffect(() => {
+    async function load() {
+      const { data, error } = await supabase
+        .from('tweets')
+        .select('*')
+        .order('created_at', { ascending: false });
+      if (error) console.error(error);
+      else setTweets(data || []);
+    }
+    load();
+  }, []);
 
   return (
     <Box bg="blue.900" minH="100vh" py={8}>
